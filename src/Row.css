@@ -1,0 +1,17 @@
+.row_line {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 20px;
+}
+.row_poster {
+    object-fit: contain;
+    margin-right: 10px;
+    transition: transform 450ms
+}
+
+.row_poster:hover{
+    transform: scale(1.08);
+    opacity: 1;
+    width: 100%;
+}
