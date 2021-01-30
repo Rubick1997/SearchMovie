@@ -4,13 +4,24 @@
     overflow-x: scroll;
     padding: 20px;
 }
+
+.row_line::-webkit-scrollbar {
+    width: 5px;
+    background-color: none
+}
+
+.row_line::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color:#003366
+}
+
 .row_poster {
     object-fit: contain;
     margin-right: 10px;
     transition: transform 450ms
 }
 
-.row_poster:hover{
+.row_poster:hover {
     transform: scale(1.08);
     opacity: 1;
     width: 100%;

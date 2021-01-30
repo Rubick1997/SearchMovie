@@ -25,7 +25,7 @@ function Collections() {
 				/>
 				<ShowsRow
 					title='Top Rated TV Shows'
-					fetchUrl={listRequests.fetchTrendingShows}
+					fetchUrl={listRequests.fetchTopRatedShows}
 				/>
 			</div>
 		);

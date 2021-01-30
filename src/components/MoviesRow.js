@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Row, Container} from "reactstrap";
+import { Row, Col } from "reactstrap";
 import request from "../axios";
 import "../Row.css";
-
-const imgUrl = "https://image.tmdb.org/t/p/w185_and_h278_bestv2/";
+import { formatDate } from "../functions";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { imgUrl } from "../requests";
 
 function MoviesRow({ title, fetchUrl }) {
 	const [movies, setMovies] = useState([]);
@@ -21,22 +23,48 @@ function MoviesRow({ title, fetchUrl }) {
 		fetchData();
 	}, [fetchUrl]);
 
-	console.table(movies);
 	return (
-		<Container>
-			<Row>
-				<h3>{title}</h3>
-				<div className='row_line'>
-					{movies.slice(0, 15).map((movie) => (
-						<img
-							className='row_poster'
-							src={`${imgUrl}${movie.poster_path}`}
-							alt={movie.title + "poster"}
-						/>
+		<Row>
+			<h3>{title}</h3>
+			<div className='row_line'>
+				{movies
+					.filter((movie) => movie.poster_path)
+					.map((movie) => (
+						<div className='row_poster' key ={movie.id}>
+							<img
+								className='poster_img'
+								src={`${imgUrl}${movie.poster_path}`}
+								alt={movie.title + "poster"}
+							/>
+							<h3>{movie.title}</h3>
+							<Row>
+								<Col>
+									<p>{formatDate(movie.release_date)}</p>
+								</Col>
+								<Col>
+									<div style={{ width: 50, height: 50 }}>
+										<CircularProgressbar
+											className='rating_circle'
+											background
+											backgroundPadding={6}
+											styles={buildStyles({
+												backgroundColor: "#3e98c7",
+												textColor: "#fff",
+												pathColor: "#fff",
+												trailColor: "transparent",
+												textSize: "25px",
+											})}
+											value={movie.vote_average * 10}
+											text={`${movie.vote_average * 10}%`}
+											strokeWidth={5}
+										/>
+									</div>
+								</Col>
+							</Row>
+						</div>
 					))}
-				</div>
-			</Row>
-		</Container>
+			</div>
+		</Row>
 	);
 }
 
