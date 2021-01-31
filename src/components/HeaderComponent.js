@@ -1,11 +1,13 @@
 import React from "react";
 import { Navbar, Button, Row, Col, Container } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import {
 	faFilm,
 	faSignInAlt,
 	faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import Home from "./HomeComponent";
 function Header() {
 	return (
 		<React.Fragment>
@@ -25,7 +27,9 @@ function Header() {
 				<Row>
 					<Col>
 						<h1 className='title'>
-							Movie App <FontAwesomeIcon icon={faFilm} />
+							<Link to='/' style={{ color: "black", textDecoration: "none" }}>
+								Movie App <FontAwesomeIcon icon={faFilm} />
+							</Link>
 						</h1>
 					</Col>
 				</Row>

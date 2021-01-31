@@ -3,3 +3,6 @@ export const formatDate = (string) => {
 	return new Date(string).toLocaleDateString([], options);
 };
 
+export const getYear = (string) =>{
+	return new Date(string).getFullYear();
+};

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Row, Container, Col } from "reactstrap";
-import request from "../axios";
+import {request} from "../axios";
 import "../Row.css";
 import { imgUrl } from "../requests";
 import { formatDate } from "../functions";
@@ -15,6 +15,7 @@ function ShowsRow({ title, fetchUrl }) {
 			try {
 				const info = await request.get(fetchUrl);
 				setShows(info.data.results);
+				console.log(info.data.results);
 				return info;
 			} catch (error) {
 				alert(error.message);
@@ -34,7 +35,7 @@ function ShowsRow({ title, fetchUrl }) {
 							<div className='row_poster' key={show.id}>
 								<img
 									className='poster_img'
-									src={`${imgUrl}${show.backdrop_path}`}
+									src={`${imgUrl}${show.poster_path}`}
 									alt={show.title + "poster"}
 								/>
 								<h3>{show.name}</h3>

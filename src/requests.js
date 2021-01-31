@@ -10,3 +10,4 @@ trending/person/week?api_key=${API_KEY}`,
 };
 
 export const imgUrl = "https://image.tmdb.org/t/p/w185_and_h278_bestv2/";
+export const imgUrl2="https://image.tmdb.org/t/p/original/"

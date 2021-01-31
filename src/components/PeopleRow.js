@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import request from "../axios";
+import {request} from "../axios";
 import "../Row.css";
 import { imgUrl } from "../requests";
 

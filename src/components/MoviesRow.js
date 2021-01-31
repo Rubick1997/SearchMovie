@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
-import request from "../axios";
+import {request} from "../axios";
 import "../Row.css";
 import { formatDate } from "../functions";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { imgUrl } from "../requests";
+import { Link} from "react-router-dom";
 
 function MoviesRow({ title, fetchUrl }) {
 	const [movies, setMovies] = useState([]);
@@ -30,13 +31,17 @@ function MoviesRow({ title, fetchUrl }) {
 				{movies
 					.filter((movie) => movie.poster_path)
 					.map((movie) => (
-						<div className='row_poster' key ={movie.id}>
+						<div className='row_poster' key={movie.id}>
 							<img
 								className='poster_img'
 								src={`${imgUrl}${movie.poster_path}`}
 								alt={movie.title + "poster"}
 							/>
-							<h3>{movie.title}</h3>
+							<Link
+								to={`/movies/${movie.id}`}
+								style={{ color: "black", textDecoration: "none" }}>
+								<h3>{movie.title}</h3>
+							</Link>
 							<Row>
 								<Col>
 									<p>{formatDate(movie.release_date)}</p>
