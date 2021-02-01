@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { imgUrl2 } from "../requests";
 import { API_KEY } from "../requests";
 import {
 	Row,
@@ -13,7 +12,8 @@ import {
 	CardText,
 } from "reactstrap";
 import { getYear } from "../functions";
-function MovieCard({ fetchUrl }) {
+import Banner from "./Banner";
+function MovieCard() {
 	const [movie, setMovie] = useState([]);
 	const { id } = useParams();
 
@@ -25,7 +25,6 @@ function MovieCard({ fetchUrl }) {
 				);
 				const info = await data.json();
 				setMovie(info);
-				console.log(info);
 				return info;
 			} catch (error) {
 				alert(error.message);
@@ -35,26 +34,28 @@ function MovieCard({ fetchUrl }) {
 	}, [id]);
 
 	return (
-		<Card>
-			<CardBody>
-				<Row>
-					<Col>
-						<img
-							className='card-img'
-							src={`${imgUrl2}${movie.backdrop_path}`}
-							alt={movie.title + "poster"}
-						/>
-					</Col>
-					<Col>
-						<CardTitle>
-							<h3>
-								{movie.title} ({getYear(movie.release_date)})
-							</h3>
-						</CardTitle>
-					</Col>
-				</Row>
-			</CardBody>
-		</Card>
+
+		<Banner item={movie} key={movie.id}/>
+		// <Card>
+		// 	<CardBody>
+		// 		<Row>
+		// 			<Col>
+		// 				<img
+		// 					className='card-img'
+		// 					src={`${imgUrl2}${movie.backdrop_path}`}
+		// 					alt={movie.title + "poster"}
+		// 				/>
+		// 			</Col>
+		// 			<Col>
+		// 				<CardTitle>
+		// 					<h3>
+		// 						{movie.title} ({getYear(movie.release_date)})
+		// 					</h3>
+		// 				</CardTitle>
+		// 			</Col>
+		// 		</Row>
+		// 	</CardBody>
+		// </Card>
 	);
 }
 
