@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Row, Container, Col } from "reactstrap";
-import { request } from "../axios";
+import { Row, Col } from "reactstrap";
+import {request} from "../axios";
 import "../Row.css";
-import { imgUrl } from "../requests";
 import { formatDate } from "../functions";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { imgUrl } from "../requests";
+import { Link} from "react-router-dom";
 
-function ShowsRow({ title, fetchUrl }) {
-	const [shows, setShows] = useState([]);
+function ItemRow({ title, fetchUrl,type }) {
+	const [items, setItems] = useState([]);
 
 	useEffect(() => {
 		async function fetchData() {
 			try {
 				const info = await request.get(fetchUrl);
-				setShows(info.data.results);
-				console.log(info.data.results);
+				setItems(info.data.results);
 				return info;
 			} catch (error) {
 				alert(error.message);
@@ -28,19 +28,23 @@ function ShowsRow({ title, fetchUrl }) {
 		<Row>
 			<h3>{title}</h3>
 			<div className='row_line'>
-				{shows
-					.filter((show) => show.backdrop_path)
-					.map((show) => (
-						<div className='row_poster' key={show.id}>
+				{items
+					.filter((item) => item.backdrop_path)
+					.map((item) => (
+						<div className='row_poster' key={item.id}>
 							<img
 								className='poster_img'
-								src={`${imgUrl}${show.poster_path}`}
-								alt={show.title + "poster"}
+								src={`${imgUrl}${item.poster_path}`}
+								alt={item.title + "poster"}
 							/>
-							<h3>{show.name}</h3>
+							<Link
+								to={`/${type}/${item.id}`}
+								style={{ color: "black", textDecoration: "none" }}>
+								<h3>{item.title || item?.name}</h3>
+							</Link>
 							<Row>
 								<Col>
-									<p>{formatDate(show.first_air_date)}</p>
+									<p>{formatDate(item.release_date || item.first_air_date)}</p>
 								</Col>
 								<Col>
 									<div style={{ width: 50, height: 50 }}>
@@ -55,8 +59,8 @@ function ShowsRow({ title, fetchUrl }) {
 												trailColor: "transparent",
 												textSize: "25px",
 											})}
-											value={show.vote_average * 10}
-											text={`${show.vote_average * 10}%`}
+											value={item.vote_average * 10}
+											text={`${item.vote_average * 10}%`}
 											strokeWidth={5}
 										/>
 									</div>
@@ -69,4 +73,4 @@ function ShowsRow({ title, fetchUrl }) {
 	);
 }
 
-export default ShowsRow;
+export default ItemRow;

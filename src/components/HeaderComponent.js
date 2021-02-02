@@ -7,7 +7,6 @@ import {
 	faSignInAlt,
 	faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import Home from "./HomeComponent";
 function Header() {
 	return (
 		<React.Fragment>

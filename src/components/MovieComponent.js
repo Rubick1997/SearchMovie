@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import { getYear } from "../functions";
 import Banner from "./Banner";
-function MovieCard() {
+function MovieCard({item}) {
 	const [movie, setMovie] = useState([]);
 	const { id } = useParams();
 
@@ -21,7 +21,7 @@ function MovieCard() {
 		async function fetchData() {
 			try {
 				const data = await fetch(
-					`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+					`https://api.themoviedb.org/3/${item}/${id}?api_key=${API_KEY}&language=en-US`
 				);
 				const info = await data.json();
 				setMovie(info);
@@ -31,7 +31,7 @@ function MovieCard() {
 			}
 		}
 		fetchData();
-	}, [id]);
+	}, [item,id]);
 
 	return (
 
