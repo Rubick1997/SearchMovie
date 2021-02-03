@@ -32,6 +32,7 @@ function MovieCard({item}) {
 		}
 		fetchData();
 	}, [item,id]);
+	console.log(movie)
 
 	return (
 

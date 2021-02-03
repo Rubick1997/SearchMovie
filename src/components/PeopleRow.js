@@ -19,6 +19,7 @@ function PeopleRow({ title, fetchUrl }) {
 		fetchData();
 	}, [fetchUrl]);
 
+
 	return (
 		<div>
 			<h3>{title}</h3>

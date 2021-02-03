@@ -11,10 +11,10 @@ function Main() {
 			<Switch>
 				<Route exact path='/' component={Home} />
 				<Route path='/movie/:id'>
-					<MovieCard item={"movie"} />
+					<MovieCard item="movie" />
 				</Route>
 				<Route path='/show/:id'>
-					<MovieCard item={"tv"} />
+					<MovieCard item="tv" />
 				</Route>
 				<Redirect to='/' />
 			</Switch>

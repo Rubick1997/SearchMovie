@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
-import {request} from "../axios";
+import { request } from "../axios";
 import "../Row.css";
 import { formatDate } from "../functions";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { imgUrl } from "../requests";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function ItemRow({ title, fetchUrl,type }) {
+function ItemRow({ title, fetchUrl, type }) {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ function ItemRow({ title, fetchUrl,type }) {
 		}
 		fetchData();
 	}, [fetchUrl]);
-
+	
 	return (
 		<Row>
 			<h3>{title}</h3>
