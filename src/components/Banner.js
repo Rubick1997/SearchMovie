@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { imgUrl2 } from "../requests";
-import { Col, Row} from "reactstrap";
-import { getYear } from "../functions";
+import { Col, Row } from "reactstrap";
+import { getYear, fullDate, convertTime } from "../functions";
 import "../Banner.css";
 
 function Banner({ item }) {
+	const { genres = [] } = item;
+
 	return (
 		<div
 			className='banner img-fluid'
@@ -28,9 +30,14 @@ function Banner({ item }) {
 					</Col>
 					<Col sm='7'>
 						<h1 className='banner_title'>
-							{item?.title || item?.name || item?.original_name}
-							({getYear(item.release_date || item.first_air_date)})
+							{item?.title || item?.name || item?.original_name}(
+							{getYear(item?.release_date || item.first_air_date)})
 						</h1>
+						<p>
+							{fullDate(item.release_date || item.first_air_date)}(US) •{" "}
+							{genres.map((genre, index) => (index ? ", " : "") + genre.name)} •{" "}
+							{convertTime(item.runtime)}
+						</p>
 						<h1 className='banner_description'>{item?.overview}</h1>
 					</Col>
 				</Row>

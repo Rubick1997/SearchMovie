@@ -1,6 +1,5 @@
 .banner {
     color: white;
-    object-fit: contain;
     height: 650px;
     position: relative;
 }
@@ -20,9 +19,7 @@
 }
 
 .banner_description {
-    line-height: 1.3;
     font-size: 1.5rem;
-    max-width: 360px;
 }
 
 .overlay {
