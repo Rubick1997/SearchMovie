@@ -13,7 +13,9 @@ import {
 } from "reactstrap";
 import { getYear } from "../functions";
 import Banner from "./Banner";
-function MovieCard({item}) {
+import Cast from "./CastRow";
+
+function MovieCard({ item }) {
 	const [movie, setMovie] = useState([]);
 	const { id } = useParams();
 
@@ -31,11 +33,13 @@ function MovieCard({item}) {
 			}
 		}
 		fetchData();
-	}, [item,id]);
+	}, [item, id]);
 
 	return (
-
-		<Banner item={movie} key={movie.id}/>
+		<div>
+			<Banner item={movie} key={movie.id} />
+			<Cast item={item} id={movie.id} />
+		</div>
 		// <Card>
 		// 	<CardBody>
 		// 		<Row>

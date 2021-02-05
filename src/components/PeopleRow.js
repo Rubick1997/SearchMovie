@@ -3,7 +3,7 @@ import { request } from "../axios";
 import "../Row.css";
 import { imgUrl } from "../requests";
 
-function PeopleRow({ title, fetchUrl }) {
+function PeopleRow({ title, fetchUrl, id }) {
 	const [people, setPeople] = useState([]);
 
 	useEffect(() => {
@@ -17,8 +17,7 @@ function PeopleRow({ title, fetchUrl }) {
 			}
 		}
 		fetchData();
-	}, [fetchUrl]);
-
+	}, [fetchUrl, id]);
 
 	return (
 		<div>

@@ -84,11 +84,13 @@ function Banner({ item }) {
 							/>
 						</div>
 						<p>User Score</p>
-						<h2 style={{ clear: "both" }}>Overview</h2>
+						<h2 style={{ clear: "both" }}>
+							Overview
+						</h2>
 						<h1 className='banner_description'>{item?.overview}</h1>
 						<Row>
 							<Col>
-								<div style={{ padding: "40px" }} >
+								<div style={{ padding: "40px" }}>
 									{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
 								</div>
 							</Col>
