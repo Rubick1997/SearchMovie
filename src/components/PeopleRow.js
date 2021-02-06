@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { request } from "../axios";
 import "../Row.css";
 import { imgUrl } from "../requests";
+import { Row } from "reactstrap";
 
 function PeopleRow({ title, fetchUrl, id }) {
 	const [people, setPeople] = useState([]);
@@ -20,7 +21,7 @@ function PeopleRow({ title, fetchUrl, id }) {
 	}, [fetchUrl, id]);
 
 	return (
-		<div>
+		<Row>
 			<h3>{title}</h3>
 			<div className='row_line'>
 				{people
@@ -36,7 +37,7 @@ function PeopleRow({ title, fetchUrl, id }) {
 						</div>
 					))}
 			</div>
-		</div>
+		</Row>
 	);
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { imgUrl2 } from "../requests";
+import { imgUrl } from "../requests";
 import { Col, Row } from "reactstrap";
 import { getYear, fullDate, convertTime } from "../functions";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -9,42 +9,20 @@ import "../Banner.css";
 
 function Banner({ item }) {
 	const { genres = [] } = item;
-	const [trailerUrl, setTrailerUrl] = useState("");
 
-	console.log(item);
-
-	const opts = {
-		height: "300px",
-		width: "99%",
-		playerVars: {
-			autoplay: 0,
-		},
-	};
-
-	const handleClick = (item) => {
-		if (trailerUrl) {
-			setTrailerUrl("");
-		} else {
-			movieTrailer(item?.title || "")
-				.then((url) => {
-					const urlParams = new URLSearchParams(new URL(url).search);
-					setTrailerUrl(urlParams.get("v"));
-				})
-				.catch((error) => console.log(error));
-		}
-	};
 	return (
 		<div
 			className='banner img-fluid'
 			style={{
 				clear: "both",
 				backgroundImage: `url(
-                ${imgUrl2}${item.backdrop_path}
+                ${imgUrl}${item.backdrop_path}
 			)`,
 				backgroundSize: " cover",
 				position: "absolute",
 				right: " 0px",
 				left: "0px",
+				backgroundRepeat: "no-repeat",
 			}}>
 			<div className='banner_contents overlay'>
 				<Row>
@@ -53,7 +31,6 @@ function Banner({ item }) {
 							className='banner_img img-fluid'
 							src={`https://image.tmdb.org/t/p/w342/${item.poster_path}`}
 							alt={item.title + "poster"}
-							onClick={() => handleClick(item)}
 						/>
 					</Col>
 					<Col sm='7'>
@@ -84,17 +61,8 @@ function Banner({ item }) {
 							/>
 						</div>
 						<p>User Score</p>
-						<h2 style={{ clear: "both" }}>
-							Overview
-						</h2>
+						<h2 style={{ clear: "both" }}>Overview</h2>
 						<h1 className='banner_description'>{item?.overview}</h1>
-						<Row>
-							<Col>
-								<div style={{ padding: "40px" }}>
-									{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
-								</div>
-							</Col>
-						</Row>
 					</Col>
 				</Row>
 			</div>

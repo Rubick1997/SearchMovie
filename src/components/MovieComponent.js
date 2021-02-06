@@ -15,7 +15,7 @@ import { getYear } from "../functions";
 import Banner from "./Banner";
 import Cast from "./CastRow";
 
-function MovieCard({ item }) {
+function MovieCard({ item, row }) {
 	const [movie, setMovie] = useState([]);
 	const { id } = useParams();
 
@@ -36,10 +36,10 @@ function MovieCard({ item }) {
 	}, [item, id]);
 
 	return (
-		<div>
+		<React.Fragment>
 			<Banner item={movie} key={movie.id} />
-			<Cast item={item} id={movie.id} />
-		</div>
+			<Cast item={item} id={id} title={row} />
+		</React.Fragment>
 		// <Card>
 		// 	<CardBody>
 		// 		<Row>

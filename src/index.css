@@ -107,7 +107,8 @@ table tbody tr:last-of-type {
 
 .poster_img {
   border-radius: 25px;
-
+  width:185px;
+  height:278px;
 }
 
 .rating_circle{

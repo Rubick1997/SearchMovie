@@ -9,5 +9,4 @@ trending/person/week?api_key=${API_KEY}`,
 	fetchTopRatedShows: `tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
 };
 
-export const imgUrl = "https://image.tmdb.org/t/p/w185_and_h278_bestv2/";
-export const imgUrl2="https://image.tmdb.org/t/p/original/"
+export const imgUrl = "https://image.tmdb.org/t/p/original";
