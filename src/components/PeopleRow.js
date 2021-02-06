@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { request } from "../axios";
 import "../Row.css";
 import { imgUrl } from "../requests";
-import { Row } from "reactstrap";
+import {Row} from"reactstrap";
 
 function PeopleRow({ title, fetchUrl, id }) {
 	const [people, setPeople] = useState([]);

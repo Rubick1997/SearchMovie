@@ -37,8 +37,9 @@ function MovieCard({ item, row }) {
 
 	return (
 		<React.Fragment>
-			<Banner item={movie} key={movie.id} />
 			<Cast item={item} id={id} title={row} />
+			<Banner item={movie} key={movie.id} />
+			
 		</React.Fragment>
 		// <Card>
 		// 	<CardBody>
