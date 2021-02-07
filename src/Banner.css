@@ -26,10 +26,10 @@
     height: 100%;
     width: 100%;
     background: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
 }
 
 .banner_img{
     margin:0 auto;
     display: block;
-    border-radius: 25px;
 }

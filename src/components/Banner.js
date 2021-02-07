@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { imgUrl } from "../requests";
-import { Col, Row } from "reactstrap";
+import { Col, Row, Card } from "reactstrap";
 import { getYear, fullDate, convertTime } from "../functions";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import YouTube from "react-youtube";
@@ -11,18 +11,16 @@ function Banner({ item }) {
 	const { genres = [] } = item;
 
 	return (
-		
+		<Row>
 			<div
-				className='banner img-fluid'
+				className='banner img-fluid '
 				style={{
 					clear: "both",
 					backgroundImage: `url(
-                ${imgUrl}${item.backdrop_path}
-			)`,
-					backgroundSize: " cover",
-					position: "absolute",
-					right: " 0px",
-					left: "0px",
+		    ${imgUrl}${item.backdrop_path}
+		)`,
+					backgroundSize: "cover",
+					borderRadius: "25px"
 				}}>
 				<div className='banner_contents overlay'>
 					<Row>
@@ -67,7 +65,7 @@ function Banner({ item }) {
 					</Row>
 				</div>
 			</div>
-		
+		</Row>
 	);
 }
 
