@@ -29,22 +29,22 @@ function ItemRow({ title, fetchUrl, type }) {
 			<h3>{title}</h3>
 			<div className='row_line'>
 				{items
-					.filter((item) => item.backdrop_path)
+					.filter((item) => item?.backdrop_path)
 					.map((item) => (
 						<div className='row_poster' key={item.id}>
 							<img
 								className='poster_img'
-								src={`${imgUrl}${item.poster_path}`}
-								alt={item.title + "poster"}
+								src={`${imgUrl}${item?.poster_path}`}
+								alt={item?.title + "poster"}
 							/>
 							<Link
-								to={`/${type}/${item.id}`}
+								to={`/${type}/${item?.id}`}
 								style={{ color: "black", textDecoration: "none" }}>
-								<h3>{item.title || item?.name}</h3>
+								<h3>{item?.title || item?.name}</h3>
 							</Link>
 							<Row>
 								<Col>
-									<p>{formatDate(item.release_date || item.first_air_date)}</p>
+									<p>{formatDate(item?.release_date || item?.first_air_date)}</p>
 								</Col>
 								<Col>
 									<div style={{ width: 50, height: 50 }}>
@@ -59,8 +59,8 @@ function ItemRow({ title, fetchUrl, type }) {
 												trailColor: "transparent",
 												textSize: "25px",
 											})}
-											value={item.vote_average * 10}
-											text={`${item.vote_average * 10}%`}
+											value={item?.vote_average * 10}
+											text={`${item?.vote_average * 10}%`}
 											strokeWidth={5}
 										/>
 									</div>

@@ -12,7 +12,7 @@ function Collections() {
 				fetchUrl={listRequests.fetchTrendingMovies}
 			/>
 			<ItemRow
-				type='show'
+				type='tv'
 				title='Trending Shows'
 				fetchUrl={listRequests.fetchTrendingShows}
 			/>
@@ -26,7 +26,7 @@ function Collections() {
 				fetchUrl={listRequests.fetchTopRatedMovies}
 			/>
 			<ItemRow
-				type='show'
+				type='tv'
 				title='Top Rated TV Shows'
 				fetchUrl={listRequests.fetchTopRatedShows}
 			/>
