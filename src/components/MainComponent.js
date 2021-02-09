@@ -3,13 +3,13 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Header from "./HeaderComponent";
 import MovieCard from "./MovieComponent";
 import SearchResults from "./SearchResults";
-import Search from "./SearchComponent";
-import Collections from "./Collections"
+import Collections from "./Collections";
+
+
 function Main() {
 	return (
 		<React.Fragment>
 			<Header />
-			<Search />
 			<Switch>
 				<Route exact path='/' component={Collections} />
 				<Route path='/movie/:id'>

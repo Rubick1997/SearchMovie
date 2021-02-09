@@ -39,28 +39,7 @@ function MovieCard({ item, row }) {
 		<React.Fragment>
 			<Banner item={movie} key={movie.id} />
 			<Cast item={item} id={id} title={row} />
-			
 		</React.Fragment>
-		// <Card>
-		// 	<CardBody>
-		// 		<Row>
-		// 			<Col>
-		// 				<img
-		// 					className='card-img'
-		// 					src={`${imgUrl2}${movie.backdrop_path}`}
-		// 					alt={movie.title + "poster"}
-		// 				/>
-		// 			</Col>
-		// 			<Col>
-		// 				<CardTitle>
-		// 					<h3>
-		// 						{movie.title} ({getYear(movie.release_date)})
-		// 					</h3>
-		// 				</CardTitle>
-		// 			</Col>
-		// 		</Row>
-		// 	</CardBody>
-		// </Card>
 	);
 }
 

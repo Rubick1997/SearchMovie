@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { API_KEY } from "../requests";
 import { useParams } from "react-router-dom";
-import {
-	Row,
-	Col,
-	Jumbotron,
-	Button,
-	Card,
-	CardBody,
-	CardTitle,
-	CardText,
-} from "reactstrap";
-import { imgUrl } from "../requests";
-import { formatDate } from "../functions";
-import { Link } from "react-router-dom";
+import { Row } from "reactstrap";
+import Search from "./SearchComponent";
+import "../Row.css";
+import Line from "./Line";
 
 function SearchResults() {
 	const [items, setItems] = useState([]);
@@ -39,41 +30,16 @@ function SearchResults() {
 
 	return (
 		<div>
-			{items
-				.filter((item) => item?.poster_path)
-				.map((item) => (
-					<Card>
-						<CardBody>
-							<Row>
-								<Col>
-									<img
-										className='poster_img'
-										src={`${imgUrl}${item?.poster_path}`}
-										alt={item?.title || item?.name + "poster"}
-									/>
-								</Col>
-								<Col>
-									<CardTitle>
-										<Link
-											to={`/${item.media_type}/${item?.id}`}
-											style={{ color: "black", textDecoration: "none" }}>
-											<h3>
-												{item?.title || item?.name || item?.original_title}
-											</h3>
-										</Link>
-									</CardTitle>
-									<CardText>
-										<p>
-											<small>
-												{formatDate(item?.first_air_date || item?.release_date)}
-											</small>
-										</p>
-									</CardText>
-								</Col>
-							</Row>
-						</CardBody>
-					</Card>
-				))}
+			<Search />
+			<Row>
+				<div className='row_line'>
+					{items
+						.filter((item) => item?.poster_path)
+						.map((item) => (
+							<Line item={item} key={item.id} type={item.media_type} />
+						))}
+				</div>
+			</Row>
 		</div>
 	);
 }

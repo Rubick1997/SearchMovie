@@ -2,10 +2,12 @@ import React from "react";
 import ItemRow from "./Row";
 import PeopleRow from "./PeopleRow";
 import { listRequests } from "../requests";
+import Search from "./SearchComponent";
 
 function Collections() {
 	return (
 		<div>
+			<Search />
 			<ItemRow
 				type='movie'
 				title='Trending Movies'
