@@ -12,6 +12,27 @@ function SearchResults() {
 
 	const itemSearch = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
+
+	const isFound = (array) => {
+		if (array.length === 0) {
+			console.log("not found")
+			return (
+				<h1>No Results found</h1>
+			)
+		} else {
+			return (
+				<Row>
+					<div className='row_line'>
+						{array
+							.filter((item) => item?.poster_path)
+							.map((item) => (
+								<Line item={item} key={item.id} type={item.media_type} />
+							))}
+					</div>
+				</Row>
+			);
+		}
+	};
 	useEffect(() => {
 		async function fetchData() {
 			try {
@@ -31,15 +52,7 @@ function SearchResults() {
 	return (
 		<div>
 			<Search />
-			<Row>
-				<div className='row_line'>
-					{items
-						.filter((item) => item?.poster_path)
-						.map((item) => (
-							<Line item={item} key={item.id} type={item.media_type} />
-						))}
-				</div>
-			</Row>
+			{isFound(items)}
 		</div>
 	);
 }

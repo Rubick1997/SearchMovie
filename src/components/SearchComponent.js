@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Input, Button} from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
-
 
 function Search() {
 	//states- input querry, movies
 	const [query, setQuery] = useState("");
-	
+
 	return (
 		<React.Fragment>
 			<Form>
 				<FormGroup className='form'>
 					<Label htmlFor='query' className='label'>
-						Movie Name
+						Movie/Show Name
 					</Label>
 					<Input
 						className='input form-control form-group'
@@ -21,7 +20,10 @@ function Search() {
 						placeholder='Search'
 						autoComplete='off'
 						value={query}
-						onChange={(e) => setQuery(e.target.value)}
+						onChange={(e) => {
+							e.preventDefault();
+							setQuery(e.target.value);
+						}}
 					/>
 					<Link to={`/results/${query}`}>
 						<Button className='btn form-group' type='submit'>

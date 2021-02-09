@@ -6,9 +6,12 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import "../Banner.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 function Banner({ item }) {
 	const { genres = [] } = item;
+	const [trailerUrl, setTrailerUrl] = useState("");
 
 	return (
 		<Row>
@@ -20,7 +23,7 @@ function Banner({ item }) {
 		    ${imgUrl}${item.backdrop_path}
 		)`,
 					backgroundSize: "cover",
-					borderRadius: "25px"
+					borderRadius: "25px",
 				}}>
 				<div className='banner_contents overlay'>
 					<Row>
@@ -40,6 +43,9 @@ function Banner({ item }) {
 								{fullDate(item.release_date || item.first_air_date)}(US) •{" "}
 								{genres.map((genre, index) => (index ? ", " : "") + genre.name)}{" "}
 								• {convertTime(item.runtime || item.episode_run_time)}
+								<button className='banner_button'>
+									<FontAwesomeIcon icon={faPlay}/> Trailer
+								</button>
 							</p>
 							<div style={{ width: 50, height: 50, float: "left" }}>
 								<CircularProgressbar
