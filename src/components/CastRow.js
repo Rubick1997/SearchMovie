@@ -6,7 +6,6 @@ import { Row } from "reactstrap";
 
 function Cast({ item, title, id }) {
 	const [casts, setCast] = useState([]);
-
 	const [isHidden, setIsHidd] = useState(false);
 
 	const handleHidden = (array) => {

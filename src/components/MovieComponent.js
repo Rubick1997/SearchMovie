@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY } from "../requests";
-import {
-	Row,
-	Col,
-	Jumbotron,
-	Button,
-	Card,
-	CardBody,
-	CardTitle,
-	CardText,
-} from "reactstrap";
-import { getYear } from "../functions";
 import Banner from "./Banner";
 import Cast from "./CastRow";
 

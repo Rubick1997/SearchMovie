@@ -9,6 +9,7 @@ import Line from "./Line";
 function SearchResults() {
 	const [items, setItems] = useState([]);
 	const { query } = useParams();
+	
 
 	const itemSearch = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 

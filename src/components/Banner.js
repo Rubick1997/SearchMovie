@@ -1,17 +1,59 @@
 import React, { useState } from "react";
 import { imgUrl } from "../requests";
-import { Col, Row, Card } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { getYear, fullDate, convertTime } from "../functions";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import "../Banner.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 
 function Banner({ item }) {
 	const { genres = [] } = item;
 	const [trailerUrl, setTrailerUrl] = useState("");
+	const [isClicked, setIsClicked] = useState(false);
+
+	const opts = {
+		height: "390",
+		width: "100%",
+		playerVars: {
+			// https://developers.google.com/youtube/player_parameters
+			autoplay: 1,
+		},
+	};
+
+	const handleClick = (movie) => {
+		if (trailerUrl) {
+			setTrailerUrl("");
+			setIsClicked(false);
+		} else {
+			movieTrailer(movie?.title || "")
+				.then((url) => {
+					const urlParams = new URLSearchParams(new URL(url).search);
+					setTrailerUrl(urlParams.get("v"));
+				})
+				.catch((error) => console.log(error));
+			setIsClicked(true);
+		}
+	};
+
+	const isTrailer = (movie) => {
+		if (movie?.title) {
+			return (
+				<button className='banner_button' onClick={() => handleClick(item)}>
+					{isClicked ? (
+						<FontAwesomeIcon icon={faStop} />
+					) : (
+						<FontAwesomeIcon icon={faPlay} />
+					)}{" "}
+					Trailer
+				</button>
+			);
+		} else {
+			return null;
+		}
+	};
 
 	return (
 		<Row>
@@ -43,9 +85,7 @@ function Banner({ item }) {
 								{fullDate(item.release_date || item.first_air_date)}(US) •{" "}
 								{genres.map((genre, index) => (index ? ", " : "") + genre.name)}{" "}
 								• {convertTime(item.runtime || item.episode_run_time)}
-								<button className='banner_button'>
-									<FontAwesomeIcon icon={faPlay}/> Trailer
-								</button>
+								{isTrailer(item)}
 							</p>
 							<div style={{ width: 50, height: 50, float: "left" }}>
 								<CircularProgressbar
@@ -67,6 +107,9 @@ function Banner({ item }) {
 							<p>User Score</p>
 							<h2 style={{ clear: "both" }}>Overview</h2>
 							<h1 className='banner_description'>{item?.overview}</h1>
+							<div style={{ padding: "40px" }}>
+								{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+							</div>
 						</Col>
 					</Row>
 				</div>
