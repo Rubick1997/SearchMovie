@@ -9,6 +9,7 @@ import "../Banner.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 
+
 function Banner({ item }) {
 	const { genres = [] } = item;
 	const [trailerUrl, setTrailerUrl] = useState("");

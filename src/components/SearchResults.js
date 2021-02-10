@@ -6,6 +6,7 @@ import Search from "./SearchComponent";
 import "../Row.css";
 import Line from "./Line";
 
+
 function SearchResults() {
 	const [items, setItems] = useState([]);
 	const { query } = useParams();
@@ -16,7 +17,6 @@ function SearchResults() {
 
 	const isFound = (array) => {
 		if (array.length === 0) {
-			console.log("not found")
 			return (
 				<h1>No Results found</h1>
 			)
@@ -47,8 +47,6 @@ function SearchResults() {
 		}
 		fetchData();
 	}, [itemSearch]);
-
-	console.log(items);
 
 	return (
 		<div>

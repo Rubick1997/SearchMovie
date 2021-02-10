@@ -6,6 +6,7 @@ import { Row } from "reactstrap";
 
 function Cast({ item, title, id }) {
 	const [casts, setCast] = useState([]);
+	const [crew, setCrew] = useState([]);
 	const [isHidden, setIsHidd] = useState(false);
 
 	const handleHidden = (array) => {
@@ -22,7 +23,7 @@ function Cast({ item, title, id }) {
 				);
 				const info = await data.json();
 				setCast(info.cast);
-				console.log(info.crew)
+				setCrew(info.crew);
 				handleHidden(info.cast);
 				return info;
 			} catch (error) {
@@ -37,6 +38,22 @@ function Cast({ item, title, id }) {
 			<Row>
 				<h3>{title}</h3>
 				<div className='row_line'>
+					{crew
+						.filter((person) => person.profile_path)
+						.filter(function (person) {
+							return person.job === "Director";
+						})
+						.map((person) => (
+							<div className='row_poster' key={person.id}>
+								<img
+									className='poster_img'
+									src={`${imgUrl}${person.profile_path}`}
+									alt={person.name + "poster"}
+								/>
+								<h3>{person.name}</h3>
+								<h1>Director</h1>
+							</div>
+						))}
 					{casts
 						.filter((person) => person.profile_path)
 						.slice(0, 15)
@@ -48,6 +65,7 @@ function Cast({ item, title, id }) {
 									alt={person.name + "poster"}
 								/>
 								<h3>{person.name}</h3>
+								<p>({person.character})</p>
 							</div>
 						))}
 				</div>
