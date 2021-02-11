@@ -13,7 +13,7 @@ function SearchResults() {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		setTimeout(() => setLoading(false), 1000);
+		setTimeout(() => setLoading(false), 2000);
 	}, []);
 
 	const itemSearch = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
