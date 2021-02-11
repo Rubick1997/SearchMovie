@@ -5,21 +5,22 @@ import { Row } from "reactstrap";
 import Search from "./SearchComponent";
 import "../Row.css";
 import Line from "./Line";
-
+import ReactLoading from "react-loading";
 
 function SearchResults() {
 	const [items, setItems] = useState([]);
 	const { query } = useParams();
-	
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		setTimeout(() => setLoading(false), 1000);
+	}, []);
 
 	const itemSearch = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
-
 	const isFound = (array) => {
 		if (array.length === 0) {
-			return (
-				<h1>No Results found</h1>
-			)
+			return <h1>No Results found</h1>;
 		} else {
 			return (
 				<Row>
@@ -51,7 +52,11 @@ function SearchResults() {
 	return (
 		<div>
 			<Search />
-			{isFound(items)}
+			{loading === false ? (
+				isFound(items)
+			) : (
+				<ReactLoading type='bars' color='#fff' height='100px' />
+			)}
 		</div>
 	);
 }
