@@ -1,6 +1,6 @@
 .banner {
     color: white;
-    height: 650px;
+    height: auto;
 }
 
 .banner_contents {
@@ -10,6 +10,9 @@
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
+    height:auto;
+    flex:1;
+    flex-wrap: wrap;
 }
 
 .banner_title {
