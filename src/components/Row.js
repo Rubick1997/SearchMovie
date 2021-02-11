@@ -26,7 +26,6 @@ function ItemRow({ title, fetchUrl, type }) {
 			<h3>{title}</h3>
 			<div className='row_line'>
 				{items
-					.filter((item) => item?.backdrop_path)
 					.map((item) => (
 						<Line item={item} key={item.id} type={type} />
 					))}

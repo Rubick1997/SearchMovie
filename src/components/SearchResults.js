@@ -18,6 +18,7 @@ function SearchResults() {
 
 	const itemSearch = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
+	console.log(items)
 	const isFound = (array) => {
 		if (array.length === 0) {
 			return <h1>No Results found</h1>;
@@ -26,7 +27,7 @@ function SearchResults() {
 				<Row>
 					<div className='row_line'>
 						{array
-							.filter((item) => item?.poster_path)
+							.filter((item) => item?.poster_path||item?.profile_path)
 							.map((item) => (
 								<Line item={item} key={item.id} type={item.media_type} />
 							))}

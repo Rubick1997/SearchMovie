@@ -61,7 +61,6 @@ function Banner({ item }) {
 				<div
 					className='banner img-fluid '
 					style={{
-						
 						backgroundImage: `url(
 		    ${imgUrl}${item.backdrop_path}
 		)`,

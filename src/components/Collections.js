@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ItemRow from "./Row";
-import PeopleRow from "./PeopleRow";
 import { listRequests } from "../requests";
 import Search from "./SearchComponent";
 import ReactLoading from "react-loading";
@@ -10,7 +9,6 @@ function Collections() {
 
 	useEffect(() => {
 		setTimeout(() => setLoading(false), 1000);
-		
 	}, []);
 
 	return (
@@ -28,7 +26,8 @@ function Collections() {
 						title='Trending Shows'
 						fetchUrl={listRequests.fetchTrendingShows}
 					/>
-					<PeopleRow
+					<ItemRow
+						type='person'
 						title='Trending People'
 						fetchUrl={listRequests.fetchTrendingPeople}
 					/>

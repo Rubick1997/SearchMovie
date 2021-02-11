@@ -1,6 +1,11 @@
 export const formatDate = (string) => {
 	let options = { year: "numeric", month: "long", day: "numeric" };
-	return new Date(string).toLocaleDateString([], options);
+	const date = new Date(string).toLocaleDateString([], options);
+	if (string === "") {
+		return null;
+	} else {
+		return date;
+	}
 };
 
 export const fullDate = (string) => {
@@ -18,12 +23,11 @@ export const convertTime = (num) => {
 		let min = Math.ceil((num / 60 - hours) * 60);
 		return hours + "h " + min + "m";
 	} else if (num === 60 || Number.isInteger(num / 60)) {
-		let hours = num/60;
-		return hours + "h"
-	}else
-	{
+		let hours = num / 60;
+		return hours + "h";
+	} else {
 		for (let i in num) {
-			return num[i] + "m"
+			return num[i] + "m";
 		}
 	}
 };

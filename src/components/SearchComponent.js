@@ -11,7 +11,7 @@ function Search() {
 			<Form>
 				<FormGroup className='form'>
 					<Label htmlFor='query' className='label'>
-						Movie/Show Name
+						Movie/Show/Person Name
 					</Label>
 					<Input
 						className='input form-control form-group'
