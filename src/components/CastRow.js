@@ -3,6 +3,7 @@ import "../Row.css";
 import { imgUrl } from "../requests";
 import { API_KEY } from "../requests";
 import { Row } from "reactstrap";
+import nopicture from "../img/nopicture.png";
 
 function Cast({ item, title, id }) {
 	const [casts, setCast] = useState([]);
@@ -33,13 +34,15 @@ function Cast({ item, title, id }) {
 		fetchData();
 	}, [item, id]);
 
+	console.log(casts);
+
 	return (
 		isHidden && (
-			<Row>
+			<Row style={{ padding: "20px" }}>
 				<h3>{title}</h3>
 				<div className='row_line'>
 					{crew
-						.filter((person) => person.profile_path)
+
 						.filter(function (person) {
 							return person.job === "Director";
 						})
@@ -47,27 +50,32 @@ function Cast({ item, title, id }) {
 							<div className='row_poster' key={person.id}>
 								<img
 									className='poster_img'
-									src={`${imgUrl}${person.profile_path}`}
+									src={
+										person.profile_path
+											? `${imgUrl}${person.profile_path}`
+											: `${nopicture}`
+									}
 									alt={person.name + "poster"}
 								/>
 								<h3>{person.name}</h3>
 								<h1>Director</h1>
 							</div>
 						))}
-					{casts
-						.filter((person) => person.profile_path)
-						.slice(0, 15)
-						.map((person) => (
-							<div className='row_poster' key={person.id}>
-								<img
-									className='poster_img'
-									src={`${imgUrl}${person.profile_path}`}
-									alt={person.name + "poster"}
-								/>
-								<h3>{person.name}</h3>
-								<p>({person.character})</p>
-							</div>
-						))}
+					{casts.slice(0, 15).map((person) => (
+						<div className='row_poster' key={person.id}>
+							<img
+								className='poster_img'
+								src={
+									person.profile_path
+										? `${imgUrl}${person.profile_path}`
+										: `${nopicture}`
+								}
+								alt={person.name + "poster"}
+							/>
+							<h3>{person.name}</h3>
+							<p>({person.character})</p>
+						</div>
+					))}
 				</div>
 			</Row>
 		)

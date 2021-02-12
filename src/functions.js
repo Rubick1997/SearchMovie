@@ -1,10 +1,9 @@
 export const formatDate = (string) => {
-	let options = { year: "numeric", month: "long", day: "numeric" };
-	const date = new Date(string).toLocaleDateString([], options);
 	if (string === "") {
 		return null;
 	} else {
-		return date;
+		let options = { year: "numeric", month: "long", day: "numeric" };
+		return new Date(string).toLocaleDateString([], options);
 	}
 };
 
@@ -16,6 +15,7 @@ export const fullDate = (string) => {
 export const getYear = (string) => {
 	return new Date(string).getFullYear();
 };
+
 
 export const convertTime = (num) => {
 	if (num > 60) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Container } from "reactstrap";
 import { Link } from "react-router-dom";
 
 function Search() {
@@ -7,7 +7,7 @@ function Search() {
 	const [query, setQuery] = useState("");
 
 	return (
-		<React.Fragment>
+		<Container>
 			<Form>
 				<FormGroup className='form'>
 					<Label htmlFor='query' className='label'>
@@ -32,7 +32,7 @@ function Search() {
 					</Link>
 				</FormGroup>
 			</Form>
-		</React.Fragment>
+		</Container>
 	);
 }
 

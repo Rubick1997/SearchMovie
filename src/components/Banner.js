@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { imgUrl } from "../requests";
-import { Col, Row, Container } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { getYear, fullDate, convertTime } from "../functions";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import YouTube from "react-youtube";
@@ -28,8 +28,9 @@ function Banner({ item }) {
 			setTrailerUrl("");
 			setIsClicked(false);
 		} else {
-			movieTrailer(movie?.title || "")
+			movieTrailer(movie?.original_title|| "")
 				.then((url) => {
+					console.log(url);
 					const urlParams = new URLSearchParams(new URL(url).search);
 					setTrailerUrl(urlParams.get("v"));
 				})
@@ -37,6 +38,8 @@ function Banner({ item }) {
 			setIsClicked(true);
 		}
 	};
+
+	console.log(item);
 
 	const isTrailer = (movie) => {
 		if (movie?.title) {
@@ -56,7 +59,7 @@ function Banner({ item }) {
 	};
 
 	return (
-		<Container>
+		<div className='container-fluid d-flex justify-content-center'>
 			<Row>
 				<div
 					className='banner img-fluid '
@@ -117,7 +120,7 @@ function Banner({ item }) {
 					</div>
 				</div>
 			</Row>
-		</Container>
+		</div>
 	);
 }
 

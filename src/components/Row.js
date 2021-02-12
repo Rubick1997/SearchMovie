@@ -22,7 +22,7 @@ function ItemRow({ title, fetchUrl, type }) {
 	}, [fetchUrl]);
 
 	return (
-		<Row>
+		<Row style={{padding: "40px" }}>
 			<h3>{title}</h3>
 			<div className='row_line'>
 				{items

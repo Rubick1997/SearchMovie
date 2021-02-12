@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Container } from "reactstrap";
 import { API_KEY } from "../requests";
-import Banner from "./Banner";
-import Cast from "./CastRow";
 import ReactLoading from "react-loading";
 
-function MovieCard({ item, row }) {
-	const [movie, setMovie] = useState([]);
-	const { id } = useParams();
+function PersonCard({ item }) {
+	const [person, setPerson] = useState([]);
+	const {id} = useParams();
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -18,7 +17,8 @@ function MovieCard({ item, row }) {
 					`https://api.themoviedb.org/3/${item}/${id}?api_key=${API_KEY}&language=en-US`
 				);
 				const info = await data.json();
-				setMovie(info);
+                console.log(info)
+				setPerson(info);
 				return info;
 			} catch (error) {
 				alert(error.message);
@@ -27,18 +27,9 @@ function MovieCard({ item, row }) {
 		fetchData();
 	}, [item, id]);
 
-	return (
-		<React.Fragment>
-			{loading === false ? (
-				<div >
-					<Banner item={movie} key={movie.id} />
-					<Cast item={item} id={id} title={row} />
-				</div>
-			) : (
-				<ReactLoading type='bars' color='#fff' height='100px' />
-			)}
-		</React.Fragment>
-	);
+	
+
+	return <Container></Container>;
 }
 
-export default MovieCard;
+export default PersonCard;

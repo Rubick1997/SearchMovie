@@ -4,6 +4,7 @@
     overflow-x: scroll;
     padding: 20px;
     width:100%;
+    margin:auto
 }
 
 .row_line::-webkit-scrollbar {
