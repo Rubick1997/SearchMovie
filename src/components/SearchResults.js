@@ -11,7 +11,7 @@ function SearchResults() {
 	const [items, setItems] = useState([]);
 	const { query } = useParams();
 	const [loading, setLoading] = useState(true);
-
+	
 	useEffect(() => {
 		setTimeout(() => setLoading(false), 2000);
 	}, []);
@@ -29,7 +29,7 @@ function SearchResults() {
 						{array
 							.filter((item) => item?.poster_path||item?.profile_path)
 							.map((item) => (
-								<Line item={item} key={item.id} type={item.media_type} />
+								<Line item={item} known={item.know_for} key={item.id} type={item.media_type} />
 							))}
 					</div>
 				</Row>

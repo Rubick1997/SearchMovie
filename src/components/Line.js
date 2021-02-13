@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "../Row.css";
 
-const Line = ({ item, type }) => {
+const Line = ({ item, type}) => {
+
 	return (
 		<div className='row_poster'>
 			<img

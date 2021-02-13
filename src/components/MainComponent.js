@@ -6,7 +6,7 @@ import SearchResults from "./SearchResults";
 import Collections from "./Collections";
 import PersonCard from "./PersonCard";
 
-function Main() {
+function Main(props) {
 	return (
 		<React.Fragment>
 			<Header />

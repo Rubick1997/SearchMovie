@@ -4,6 +4,7 @@ import { imgUrl } from "../requests";
 import { API_KEY } from "../requests";
 import { Row } from "reactstrap";
 import nopicture from "../img/nopicture.png";
+import { Link } from "react-router-dom";
 
 function Cast({ item, title, id }) {
 	const [casts, setCast] = useState([]);
@@ -57,7 +58,11 @@ function Cast({ item, title, id }) {
 									}
 									alt={person.name + "poster"}
 								/>
-								<h3>{person.name}</h3>
+								<Link
+									to={`/person/${person?.id}`}
+									style={{ color: "black", textDecoration: "none" }}>
+									<h3>{person.name}</h3>
+								</Link>
 								<h1>Director</h1>
 							</div>
 						))}
@@ -72,7 +77,11 @@ function Cast({ item, title, id }) {
 								}
 								alt={person.name + "poster"}
 							/>
-							<h3>{person.name}</h3>
+							<Link
+								to={`/person/${person?.id}`}
+								style={{ color: "black", textDecoration: "none" }}>
+								<h3>{person.name}</h3>
+							</Link>
 							<p>({person.character})</p>
 						</div>
 					))}

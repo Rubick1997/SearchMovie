@@ -4,6 +4,7 @@ import { request } from "../axios";
 import "../Row.css";
 import "react-circular-progressbar/dist/styles.css";
 import Line from "./Line";
+import { faCloudDownloadAlt } from "@fortawesome/free-solid-svg-icons";
 
 function ItemRow({ title, fetchUrl, type }) {
 	const [items, setItems] = useState([]);
@@ -21,14 +22,15 @@ function ItemRow({ title, fetchUrl, type }) {
 		fetchData();
 	}, [fetchUrl]);
 
+	console.log(items)
+
 	return (
-		<Row style={{padding: "40px" }}>
+		<Row style={{ padding: "40px" }}>
 			<h3>{title}</h3>
 			<div className='row_line'>
-				{items
-					.map((item) => (
-						<Line item={item} key={item.id} type={type} />
-					))}
+				{items.map((item) => (
+					<Line item={item} key={item.id} type={type} known_for={item.known_for} />
+				))}
 			</div>
 		</Row>
 	);
