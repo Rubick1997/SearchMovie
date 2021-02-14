@@ -82,7 +82,7 @@ function Cast({ item, title, id }) {
 								style={{ color: "black", textDecoration: "none" }}>
 								<h3>{person.name}</h3>
 							</Link>
-							<p>({person.character})</p>
+							<p>{person.character}</p>
 						</div>
 					))}
 				</div>

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "../Row.css";
 import nopicture from "../img/nopicture.png";
+
 const Line = ({ item, type }) => {
 	const { known_for = [] } = item;
 

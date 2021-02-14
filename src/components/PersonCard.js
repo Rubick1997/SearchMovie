@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY } from "../requests";
 import ReactLoading from "react-loading";
-import { Row, Col, Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Row, Col, Card, Container } from "reactstrap";
 import { formatDate } from "../functions";
 import "../Banner.css";
 import "../Row.css";
-import Line from "./Line";
+import PersonCredits from "./PersonCredits";
 import nopicture from "../img/nopicture.png";
 
 function PersonCard({ item }) {
@@ -16,7 +16,7 @@ function PersonCard({ item }) {
 	const { id } = useParams();
 
 	useEffect(() => {
-		setTimeout(() => setLoading(false), 1000);
+		setTimeout(() => setLoading(false), 2000);
 		async function fetchData() {
 			try {
 				const data = await fetch(
@@ -34,60 +34,70 @@ function PersonCard({ item }) {
 		fetchData();
 	}, [item, id]);
 
-	return (
-		<div className='container'>
+	return loading === false ? (
+		<Container>
 			<Card style={{ borderRadius: "25px" }}>
-				<Row style={{ margin: "auto" }}>
-					<Col sm='4' style={{ listStyleType: "none", fontSize: "12px" }}>
-						<img
-							className='banner_img img-fluid'
-							style={{ borderRadius: "25px", marginTop: "10px" }}
-							src={
-								person?.profile_path
-									? `https://image.tmdb.org/t/p/w342/${person?.profile_path}`
-									: `${nopicture}`
-							}
-							alt={person.name + "poster"}
-						/>
-						<h3>Personal Info</h3>
-						<div>
-							Known For: {person.known_for_department}
-							<br />
-							Gender:
-							{person.gender === 2
-								? "Male"
-								: person.gender === 1
-								? "Female"
-								: "Uknown"}
-							<br />
-							Birthday:{" "}
-							{person.birthday ? formatDate(person.birthday) : "Uknown"}
-							<br />
+				<Container>
+					<Row style={{ margin: "auto" }}>
+						<Col sm='4' style={{ listStyleType: "none", fontSize: "12px" }}>
+							<img
+								className='banner_img img-fluid'
+								style={{ borderRadius: "25px", marginTop: "10px" }}
+								src={
+									person?.profile_path
+										? `https://image.tmdb.org/t/p/w342/${person?.profile_path}`
+										: `${nopicture}`
+								}
+								alt={person.name + "poster"}
+							/>
+							<h3>Personal Info</h3>
 							<div>
-								{person.deathday
-									? `Deathday:${formatDate(person.deathday)}`
-									: null}
+								Known For: {person.known_for_department}
+								<br />
+								Gender:
+								{person.gender === 2
+									? "Male"
+									: person.gender === 1
+									? "Female"
+									: "Uknown"}
+								<br />
+								Birthday:{" "}
+								{person.birthday ? formatDate(person.birthday) : "Uknown"}
+								<br />
+								<div>
+									{person.deathday
+										? `Deathday:${formatDate(person.deathday)}`
+										: null}
+								</div>
+								{person.place_of_birth ? `Place of birth:${person.place_of_birth}`:null}
+								<br />
 							</div>
-							Place of birth: {person.place_of_birth}
-							<br />
-						</div>
-						{known.length > 0 && (
-							<ul>
-								Also Known As:
-								{known.map((value, index) => {
-									return <li key={index}>{value}</li>;
-								})}
-							</ul>
-						)}
-					</Col>
-					<Col sm='8'>
-						<h1>{person.name}</h1>
-						<h3>Biography</h3>
-						<p className='text-justify'>{person.biography}</p>
-					</Col>
-				</Row>
+							{known.length > 0 && (
+								<ul>
+									Also Known As:
+									{known.map((value, index) => {
+										return <li key={index}>{value}</li>;
+									})}
+								</ul>
+							)}
+						</Col>
+						<Col sm='8'>
+							<h1>{person.name}</h1>
+							<h3>Biography</h3>
+							<p className='text-justify'>{person.biography}</p>
+							<Row style={{ margin: "auto" }}>
+								<PersonCredits
+									person_id={person.id}
+									known={person.known_for_department}
+								/>
+							</Row>
+						</Col>
+					</Row>
+				</Container>
 			</Card>
-		</div>
+		</Container>
+	) : (
+		<ReactLoading type='bars' color='#fff' height='100px' />
 	);
 }
 
