@@ -5,21 +5,32 @@ import { formatDate } from "../functions";
 import { Link } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "../Row.css";
-
-const Line = ({ item, type}) => {
+import nopicture from "../img/nopicture.png";
+const Line = ({ item, type }) => {
+	const { known_for = [] } = item;
 
 	return (
 		<div className='row_poster'>
-			<img
-				className='poster_img'
-				src={`${imgUrl}${item?.poster_path || item?.profile_path}`}
-				alt={item?.title || item?.name + "poster"}
-			/>
-			<Link
-				to={`/${type}/${item?.id}`}
-				style={{ color: "black", textDecoration: "none" }}>
-				<h3>{item?.title || item?.name}</h3>
-			</Link>
+			<Row>
+				<Col>
+					<img
+						className='poster_img'
+						src={
+							item.profile_path || item?.poster_path
+								? `${imgUrl}${item?.poster_path || item?.profile_path}`
+								: `${nopicture}`
+						}
+						alt={item?.title || item?.name + "poster"}
+					/>
+					<Link
+						to={{
+							pathname: `/${type}/${item?.id}`,
+						}}
+						style={{ color: "black", textDecoration: "none" }}>
+						<h3>{item?.title || item?.name}</h3>
+					</Link>
+				</Col>
+			</Row>
 			{item.vote_average && (
 				<Row>
 					<Col>
@@ -43,6 +54,14 @@ const Line = ({ item, type}) => {
 								strokeWidth={5}
 							/>
 						</div>
+					</Col>
+				</Row>
+			)}
+			{item?.known_for && (
+				<Row>
+					<Col style={{ wordBreak: "normal" }}>
+						{item?.known_for_department}•
+						{known_for.map((el, index) => (index ? "," : "") + el?.title)}
 					</Col>
 				</Row>
 			)}

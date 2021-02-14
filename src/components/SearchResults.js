@@ -27,9 +27,8 @@ function SearchResults() {
 				<Row>
 					<div className='row_line'>
 						{array
-							.filter((item) => item?.poster_path||item?.profile_path)
 							.map((item) => (
-								<Line item={item} known={item.know_for} key={item.id} type={item.media_type} />
+								<Line item={item} key={item.id} type={item.media_type} />
 							))}
 					</div>
 				</Row>

@@ -3,14 +3,17 @@ import { useParams } from "react-router-dom";
 import { API_KEY } from "../requests";
 import ReactLoading from "react-loading";
 import { Row, Col, Card, CardBody, CardTitle, CardText } from "reactstrap";
-import "../Banner.css";
 import { formatDate } from "../functions";
+import "../Banner.css";
+import "../Row.css";
+import Line from "./Line";
+import nopicture from "../img/nopicture.png";
 
 function PersonCard({ item }) {
 	const [person, setPerson] = useState([]);
 	const [known, setKnown] = useState([]);
-	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
+	const { id } = useParams();
 
 	useEffect(() => {
 		setTimeout(() => setLoading(false), 1000);
@@ -32,14 +35,18 @@ function PersonCard({ item }) {
 	}, [item, id]);
 
 	return (
-		<div className='container-fluid'>
+		<div className='container'>
 			<Card style={{ borderRadius: "25px" }}>
 				<Row style={{ margin: "auto" }}>
 					<Col sm='4' style={{ listStyleType: "none", fontSize: "12px" }}>
 						<img
 							className='banner_img img-fluid'
 							style={{ borderRadius: "25px", marginTop: "10px" }}
-							src={`https://image.tmdb.org/t/p/w342/${person.profile_path}`}
+							src={
+								person?.profile_path
+									? `https://image.tmdb.org/t/p/w342/${person?.profile_path}`
+									: `${nopicture}`
+							}
 							alt={person.name + "poster"}
 						/>
 						<h3>Personal Info</h3>
@@ -63,13 +70,15 @@ function PersonCard({ item }) {
 							</div>
 							Place of birth: {person.place_of_birth}
 							<br />
-							Also Known As:
 						</div>
-						<ul>
-							{known.map((value, index) => {
-								return <li key={index}>{value}</li>;
-							})}
-						</ul>
+						{known.length > 0 && (
+							<ul>
+								Also Known As:
+								{known.map((value, index) => {
+									return <li key={index}>{value}</li>;
+								})}
+							</ul>
+						)}
 					</Col>
 					<Col sm='8'>
 						<h1>{person.name}</h1>
