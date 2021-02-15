@@ -77,7 +77,7 @@ function Banner({ item }) {
 								<img
 									className='banner_img img-fluid'
 									src={
-										item?.profile_path
+										item?.poster_path
 											? `https://image.tmdb.org/t/p/w342/${item.poster_path}`
 											: `${nopicture}`
 									}
