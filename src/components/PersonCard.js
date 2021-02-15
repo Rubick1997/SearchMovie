@@ -23,7 +23,6 @@ function PersonCard({ item }) {
 					`https://api.themoviedb.org/3/${item}/${id}?api_key=${API_KEY}&language=en-US`
 				);
 				const info = await data.json();
-				console.log(info);
 				setPerson(info);
 				setKnown(info.also_known_as);
 				return info;

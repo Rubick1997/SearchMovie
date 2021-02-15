@@ -29,7 +29,7 @@ function Banner({ item }) {
 			setTrailerUrl("");
 			setIsClicked(false);
 		} else {
-			movieTrailer(movie?.original_title || "")
+			movieTrailer(movie?.original_title ||movie?.name|| "")
 				.then((url) => {
 					console.log(url);
 					const urlParams = new URLSearchParams(new URL(url).search);
@@ -39,11 +39,8 @@ function Banner({ item }) {
 			setIsClicked(true);
 		}
 	};
-
-	console.log(item);
-
 	const isTrailer = (movie) => {
-		if (movie?.title) {
+		if (movie?.original_title) {
 			return (
 				<button className='banner_button' onClick={() => handleClick(item)}>
 					{isClicked ? (

@@ -35,7 +35,6 @@ function Cast({ item, title, id }) {
 		fetchData();
 	}, [item, id]);
 
-	console.log(casts);
 
 	return (
 		isHidden && (

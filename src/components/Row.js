@@ -21,8 +21,6 @@ function ItemRow({ title, fetchUrl, type }) {
 		fetchData();
 	}, [fetchUrl]);
 
-	console.log(items)
-
 	return (
 		<Row style={{ padding: "40px" }}>
 			<h3>{title}</h3>
