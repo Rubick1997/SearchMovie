@@ -7,6 +7,7 @@ import {
 	faSignInAlt,
 	faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
+
 function Header() {
 	return (
 		<React.Fragment>
@@ -22,7 +23,6 @@ function Header() {
 					</ul>
 				</span>
 			</Navbar>
-			<Container>
 				<Row>
 					<Col>
 						<h1 className='title'>
@@ -32,7 +32,6 @@ function Header() {
 						</h1>
 					</Col>
 				</Row>
-			</Container>
 		</React.Fragment>
 	);
 }

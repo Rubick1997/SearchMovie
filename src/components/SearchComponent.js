@@ -7,7 +7,7 @@ function Search() {
 	const [query, setQuery] = useState("");
 
 	return (
-		<Container>
+
 			<Form>
 				<FormGroup className='form'>
 					<Label htmlFor='query' className='label'>
@@ -32,7 +32,6 @@ function Search() {
 					</Link>
 				</FormGroup>
 			</Form>
-		</Container>
 	);
 }
 
