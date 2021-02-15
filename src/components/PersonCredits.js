@@ -4,6 +4,8 @@ import Line from "./Line";
 import "../Row.css";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+
 function PersonCredits({ person_id, known }) {
 	const [cast, setCast] = useState([]);
 	const [crew, setCrew] = useState([]);
@@ -24,8 +26,6 @@ function PersonCredits({ person_id, known }) {
 		fetchData();
 	}, [person_id]);
 
-	console.log(cast);
-	console.log(known);
 	const isActing = (string) => {
 		if (string === "Acting") {
 			return cast;
@@ -46,8 +46,18 @@ function PersonCredits({ person_id, known }) {
 					))}
 			</div>
 			<p>
-				more info
-				<FontAwesomeIcon icon={faArrowRight} />
+				<Link
+					to={{
+						pathname: `/credits/${person_id}`,
+						state: {
+							crew_info:crew,
+							cast_info:cast,
+						},
+					}}
+					style={{ color: "black", textDecoration: "none" }}>
+					more info
+					<FontAwesomeIcon icon={faArrowRight} />
+				</Link>
 			</p>
 		</>
 	);
