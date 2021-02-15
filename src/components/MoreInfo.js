@@ -10,9 +10,9 @@ import {
 	NavItem,
 	NavLink,
 } from "reactstrap";
-import TeamTable from"./TeamTable"
+import TeamTable from "./TeamTable";
 import classnames from "classnames";
-
+import ReactLoading from "react-loading";
 const MoreInfo = () => {
 	const location = useLocation();
 	const state = location.state;
@@ -24,11 +24,12 @@ const MoreInfo = () => {
 	useEffect(() => {
 		setTimeout(() => setLoading(false), 2000);
 	}, []);
+
 	const toggle = (tab) => {
 		if (activeTab !== tab) setActiveTab(tab);
 	};
 
-	return (
+	return loading === false ? (
 		<Container style={{ margin: "auto" }}>
 			<Nav tabs>
 				<NavItem>
@@ -89,6 +90,8 @@ const MoreInfo = () => {
 				</TabPane>
 			</TabContent>
 		</Container>
+	) : (
+		<ReactLoading type='bars' color='#fff' height='100px' />
 	);
 };
 

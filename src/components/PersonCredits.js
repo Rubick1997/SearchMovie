@@ -37,7 +37,6 @@ function PersonCredits({ person_id, known }) {
 	return (
 		<>
 			<h3>Known For </h3>
-
 			<div className='row_line'>
 				{isActing(known)
 					.slice(0, 8)

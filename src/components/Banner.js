@@ -8,6 +8,7 @@ import movieTrailer from "movie-trailer";
 import "../Banner.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
+import nopicture from "../img/nopicture.png";
 
 function Banner({ item }) {
 	const { genres = [] } = item;
@@ -28,7 +29,7 @@ function Banner({ item }) {
 			setTrailerUrl("");
 			setIsClicked(false);
 		} else {
-			movieTrailer(movie?.original_title|| "")
+			movieTrailer(movie?.original_title || "")
 				.then((url) => {
 					console.log(url);
 					const urlParams = new URLSearchParams(new URL(url).search);
@@ -75,7 +76,11 @@ function Banner({ item }) {
 							<Col sm='5'>
 								<img
 									className='banner_img img-fluid'
-									src={`https://image.tmdb.org/t/p/w342/${item.poster_path}`}
+									src={
+										item?.profile_path
+											? `https://image.tmdb.org/t/p/w342/${item.poster_path}`
+											: `${nopicture}`
+									}
 									alt={item.title + "poster"}
 								/>
 							</Col>
