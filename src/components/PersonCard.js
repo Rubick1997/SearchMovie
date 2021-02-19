@@ -34,7 +34,7 @@ function PersonCard({ item }) {
 	}, [item, id]);
 
 	return loading === false ? (
-		<Container>
+		<Container className='justify-content-center'>
 			<Card style={{ borderRadius: "25px" }}>
 				<Container>
 					<Row style={{ margin: "auto" }}>
@@ -68,7 +68,9 @@ function PersonCard({ item }) {
 										? `Deathday:${formatDate(person.deathday)}`
 										: null}
 								</div>
-								{person.place_of_birth ? `Place of birth:${person.place_of_birth}`:null}
+								{person.place_of_birth
+									? `Place of birth:${person.place_of_birth}`
+									: null}
 								<br />
 							</div>
 							{known.length > 0 && (

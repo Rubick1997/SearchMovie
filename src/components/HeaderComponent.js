@@ -1,33 +1,10 @@
-import React, { useState } from "react";
-import {
-	Navbar,
-	Button,
-	Row,
-	Col,
-	Modal,
-	ModalHeader,
-	ModalBody,
-	Form,
-	FormGroup,
-	Label,
-	Input,
-} from "reactstrap";
+import React from "react";
+import { Row, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import {
-	faFilm,
-	faSignInAlt,
-	faUserPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFilm } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
-	const [modal, setModal] = useState(false);
-	const [modal2,setModal2] = useState(false)
-
-	const toggle = () => setModal(!modal);
-	const toggle2 = () => setModal2(!modal2)
-
-
 	return (
 		<React.Fragment>
 			<Row>
