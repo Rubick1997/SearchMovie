@@ -1,5 +1,4 @@
 This is the app, with which you can find the most popular movies,tv shows and people, created with TMDB API and React
-(authentication is not available yet)
 ## Live demo
 
 [Movie App] (https://movieapp-40c46.web.app)
