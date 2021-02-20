@@ -1,6 +1,5 @@
 export const API_KEY =
-	"cdd3c5ce5ede207e5ca373b35395541c"; 
-/* export const API_KEY = "add your own API key , my will not work"*/
+	"Your API Key"; 
 
 export const listRequests = {
 	fetchTrendingMovies: `/trending/movie/week?api_key=${API_KEY}&language=en-US`,
