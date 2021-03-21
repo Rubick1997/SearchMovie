@@ -15,7 +15,7 @@ function Search() {
 					</Label>
 					<Input
 						className='input form-control form-group'
-						type='text'
+						type='search'
 						name='query'
 						placeholder='Search'
 						autoComplete='off'
